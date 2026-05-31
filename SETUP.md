@@ -57,8 +57,6 @@ jupyter notebook
 
 In the Jupyter browser tab that opens, navigate into the `exploratory` folder and create a new **Python 3** notebook.
 
-> **Important:** Always launch Jupyter from the Terminal using the steps above — do not open notebooks directly from Finder or Google Drive. This ensures the correct Python environment is used.
-
 ---
 
 ## Step 6 — Connect to BigQuery
