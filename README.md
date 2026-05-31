@@ -60,7 +60,6 @@ jupyter notebook
 
 Create a new **Python 3** notebook wherever you like on your computer.
 
-> **Important:** Always launch Jupyter from Terminal or Command Prompt — do not open notebooks directly from Finder or File Explorer. This ensures the correct Python environment with the installed packages is used.
 
 ---
 
