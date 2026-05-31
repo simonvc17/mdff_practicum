@@ -2,7 +2,7 @@
 
 ## Overview
 
-All project data is stored in Google Cloud (BigQuery and Cloud Storage) under the project `mdff-practicum-2026`. You will query the data directly from Jupyter Notebooks — no need to download any files locally.
+All project data is stored in Google Cloud (BigQuery) under the project `mdff-practicum-2026`. You will query the data directly from Jupyter Notebooks on your own computer — no need to download any data files locally.
 
 ---
 
@@ -17,17 +17,21 @@ If you already use Google services with your `@gatech.edu` email (e.g. Google Dr
 
 ## Step 2 — Request Access
 
-Once your gatech email is connected, I will grant you access to the Google 
-Cloud project.
+Once your `@gatech.edu` email is connected to a Google account, Simon will grant you access to the Google Cloud project.
 
 ---
 
 ## Step 3 — Install Google Cloud SDK
 
-Download and install from [https://cloud.google.com/sdk/docs/install](https://cloud.google.com/sdk/docs/install)
+**Mac (Terminal):**
+```bash
+brew install --cask google-cloud-sdk
+```
 
-Then open Terminal (Mac) or Command Prompt (Windows) and run:
+**Windows or manual install:**
+Download from [https://cloud.google.com/sdk/docs/install](https://cloud.google.com/sdk/docs/install)
 
+Then run:
 ```bash
 gcloud init
 gcloud auth application-default login
@@ -46,16 +50,17 @@ pip install google-cloud-bigquery google-cloud-storage pandas db-dtypes gcsfs pa
 
 ---
 
-## Step 5 — Set Up Your Project Folder and Launch Jupyter
+## Step 5 — Launch Jupyter
+
+Open Terminal (Mac) or Command Prompt (Windows) and run:
 
 ```bash
-mkdir ~/mdff-practicum
-mkdir ~/mdff-practicum/exploratory
-cd ~/mdff-practicum
 jupyter notebook
 ```
 
-In the Jupyter browser tab that opens, navigate into the `exploratory` folder and create a new **Python 3** notebook.
+Create a new **Python 3** notebook wherever you like on your computer.
+
+> **Important:** Always launch Jupyter from Terminal or Command Prompt — do not open notebooks directly from Finder or File Explorer. This ensures the correct Python environment with the installed packages is used.
 
 ---
 
@@ -109,6 +114,25 @@ df.head()
 
 ---
 
+## Querying Best Practices
+
+- **Never download the raw data files.** Always query BigQuery directly from your notebook. The files are very large and BigQuery handles them efficiently in the cloud.
+- **Always filter your queries** when exploring data, especially on large tables. Use `WHERE` and `LIMIT` clauses to avoid scanning entire tables unnecessarily.
+- **Example of a well-filtered query:**
+
+```python
+query = """
+SELECT px_id, age, gender, ethnicity, init_date, end_stat
+FROM `mdff-practicum-2026.mdff.cand_kipa`
+WHERE organ = 'KI'
+LIMIT 10000
+"""
+df = client.query(query).to_dataframe()
+df.head()
+```
+
+---
+
 ## Key Tables
 
 | Table | Description | Rows (approx) |
@@ -129,6 +153,6 @@ df.head()
 - **Project website:** [https://sunshinespend.com/mdff/](https://sunshinespend.com/mdff/)
 - **Google Cloud Console:** [https://console.cloud.google.com](https://console.cloud.google.com)
 - **BigQuery Console:** [https://console.cloud.google.com/bigquery](https://console.cloud.google.com/bigquery)
-- **Scienfitic Registry of Transplant Recipients (SRTR) Data Dictionary:** [https://srtr.hrsa.gov/requesting-data/about-srtr-standard-analysis-files-safs/saf-data-dictionary](https://srtr.hrsa.gov/requesting-data/about-srtr-standard-analysis-files-safs/saf-data-dictionary)
----
+- **SRTR Data Dictionary:** [https://srtr.hrsa.gov/requesting-data/about-srtr-standard-analysis-files-safs/saf-data-dictionary](https://srtr.hrsa.gov/requesting-data/about-srtr-standard-analysis-files-safs/saf-data-dictionary)
 
+---
