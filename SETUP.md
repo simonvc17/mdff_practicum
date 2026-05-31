@@ -109,25 +109,6 @@ df.head()
 
 ---
 
-## Querying Best Practices
-
-- **Never download the raw data files.** Always query BigQuery directly from your notebook. The files are very large and BigQuery handles them efficiently in the cloud.
-- **Always filter your queries** when exploring data, especially on large tables. Use `WHERE` and `LIMIT` clauses to avoid scanning entire tables unnecessarily.
-- **Example of a well-filtered query:**
-
-```python
-query = """
-SELECT px_id, age, gender, ethnicity, init_date, end_stat
-FROM `mdff-practicum-2026.mdff.cand_kipa`
-WHERE organ = 'KI'
-LIMIT 10000
-"""
-df = client.query(query).to_dataframe()
-df.head()
-```
-
----
-
 ## Key Tables
 
 | Table | Description | Rows (approx) |
@@ -146,13 +127,8 @@ df.head()
 ## Project Resources
 
 - **Project website:** [https://sunshinespend.com/mdff/](https://sunshinespend.com/mdff/)
-- **Student Data Bundle:** Available on the project website — start here for variable descriptions and data dictionary
 - **Google Cloud Console:** [https://console.cloud.google.com](https://console.cloud.google.com)
 - **BigQuery Console:** [https://console.cloud.google.com/bigquery](https://console.cloud.google.com/bigquery)
-
+- **Scienfitic Registry of Transplant Recipients (SRTR) Data Dictionary:** [https://srtr.hrsa.gov/requesting-data/about-srtr-standard-analysis-files-safs/saf-data-dictionary](https://srtr.hrsa.gov/requesting-data/about-srtr-standard-analysis-files-safs/saf-data-dictionary)
 ---
 
-## Questions?
-
-For data access issues contact **[INSERT CONTACT EMAIL]**.  
-For project questions contact matt@sunshinespend.com or jennifer.insideheads@gmail.com.
