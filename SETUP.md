@@ -17,7 +17,8 @@ If you already use Google services with your `@gatech.edu` email (e.g. Google Dr
 
 ## Step 2 — Request Access
 
-Send your `@gatech.edu` email address to **[INSERT CONTACT EMAIL]** to be granted access to the Google Cloud project.
+Once your gatech email is connected, I will grant you access to the Google 
+Cloud project.
 
 ---
 
